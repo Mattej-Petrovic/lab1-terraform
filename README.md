@@ -36,7 +36,8 @@ CI/CD körs via GitHub Actions på varje push och PR mot `main`.
 
 **Screenshot — pipeline som passerar:**
 
-> 
+> <img width="1905" height="649" alt="Checks" src="https://github.com/user-attachments/assets/a30de503-2f6f-4829-ae41-a6d9ad30e7a5" />
+
 
 ---
 
@@ -44,7 +45,8 @@ CI/CD körs via GitHub Actions på varje push och PR mot `main`.
 
 **Screenshot — VM körs i GCP:**
 
-> 
+> <img width="1563" height="47" alt="VM" src="https://github.com/user-attachments/assets/40b5a9bc-f9a6-486f-b1ad-86a98dc2da6c" />
+
 
 ---
 
