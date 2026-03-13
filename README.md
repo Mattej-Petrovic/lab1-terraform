@@ -1,6 +1,6 @@
 # lab1-terraform
 
-Det här projektet sätter upp en virtuell maskin i Google Cloud Platform med hjälp av Terraform. VM:en provisioneras automatiskt med grundläggande säkerhetshärdning, en daglig backup-policy via snapshot-schema, och en GitHub Actions-pipeline som kör lint, säkerhetsskanning, validering, plan och apply.
+Det här projektet sätter upp en virtuell maskin i Google Cloud Platform med hjälp av Terraform. VM:en skapas automatiskt med grundläggande säkerhetshärdning, en daglig backup-policy via snapshot-schema, och en GitHub Actions-pipeline som kör lint, säkerhetsskanning, validering, plan och apply.
 
 ---
 
