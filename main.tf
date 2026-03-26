@@ -30,7 +30,7 @@ resource "google_compute_instance" "vm" {
     }
   }
 
-    network_interface {
+  network_interface {
     network = "default"
     access_config {} #trivy:ignore:GCP-0031
   }
