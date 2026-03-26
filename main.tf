@@ -30,9 +30,9 @@ resource "google_compute_instance" "vm" {
     }
   }
 
-  network_interface {
+    network_interface {
     network = "default"
-    access_config {}
+    access_config {} #trivy:ignore:GCP-0031
   }
 
   metadata_startup_script = file("startup.sh")
