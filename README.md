@@ -62,6 +62,20 @@ CI/CD körs via GitHub Actions på varje push och PR mot `main`.
 
 **terraform.tfvars i .gitignore** — projektspecifika värden och potentiellt känslig konfiguration hamnar aldrig i versionshanteringen.
 
+**CIS Benchmark
+
+Startup-scriptet implementerar härdning enligt CIS Benchmark för Ubuntu 22.04:
+
+- **SSH** — root-login inaktiverat, lösenordsautentisering avstängd, MaxAuthTries 3, X11Forwarding av
+- **Kernel** — IP forwarding avstängt, SYN cookies aktiverade, ICMP redirects blockerade, martians loggade via sysctl
+- **Filrättigheter** — /etc/shadow och /etc/gshadow satta till 640
+- **Lösenordspolicy** — minlängd 14 tecken, krav på stora/små bokstäver, siffror och specialtecken via libpam-pwquality
+- **Auditd** — systemhändelser loggas och sparas
+- **Fail2ban** — SSH-brute force blockeras efter 3 försök, 1 timmes ban
+- **Pakethantering** — telnet och rsh borttagna
+
+Lynis installeras och körs automatiskt vid uppstart. Rapporten sparas till `/var/log/lynis-audit.log` på VM:en.
+
 ---
 
 ## Disaster Recovery
