@@ -61,3 +61,26 @@ CI/CD körs via GitHub Actions på varje push och PR mot `main`.
 **Snapshot-policy** — daglig backup kl. 03:00 med 7 dagars retention. Snapshots behålls även om källdisken raderas (`KEEP_AUTO_SNAPSHOTS`), vilket ger en rimlig recovery-möjlighet utan extra kostnad.
 
 **terraform.tfvars i .gitignore** — projektspecifika värden och potentiellt känslig konfiguration hamnar aldrig i versionshanteringen.
+
+---
+
+## Disaster Recovery
+
+### RPO — Recovery Point Objective
+Dagliga snapshots kl. 03:00 med 7 dagars retention. Maximal dataförlust vid ett haveri är 24 timmar.
+
+### RTO — Recovery Time Objective
+Infrastrukturen är fullt kodad i Terraform. Vid ett totalhaveri kör man:
+```bash
+terraform apply
+```
+
+En ny VM med identisk konfiguration är uppe inom några minuter. Ingen manuell återuppbyggnad behövs.
+
+### Scenario: VM dör helt
+1. Kör `terraform apply` — ny VM skapas automatiskt från koden
+2. Om data behöver återställas: gå till GCP Console → Snapshots → välj senaste snapshot → skapa ny disk från den
+3. Alternativt via CLI: `gcloud compute disks create DISK-NAMN --source-snapshot=SNAPSHOT-NAMN --zone=europe-west4-a`
+
+### Scenario: Felaktig deploy
+Terraform state versioneras i GCS-bucketen `chas-tf-state-m4k-gang`. Tidigare state-filer finns kvar och kan användas för att identifiera vad som ändrades.
