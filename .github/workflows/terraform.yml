@@ -30,6 +30,7 @@ jobs:
           scan-type: 'config'
           scan-ref: '.'
           severity: 'CRITICAL,HIGH'
+          exit-code: '1'
 
   validate:
     runs-on: ubuntu-latest
